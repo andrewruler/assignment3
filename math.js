@@ -1,10 +1,19 @@
-function heronFormula(a,b,c){
+
+function heronFormula(){
+    let a = document.getElementById("heronA").value;
+    let b = document.getElementById("heronB").value;
+    let c = document.getElementById("heronC").value;
     let area = (1/4)*(Math.sqrt((4*a**2*b**2)-(a**2+b**2+c**2)**2));
-    return area;
+    console.log(area);
+    console.log(a);
+    document.getElementById("heronResult").value = area;
 }
 
-function ambiguousCase(alpha, a,b){
+function ambiguousCase(){
     let result = document.getElementById("result");
+    let alpha = document.getElementById("ambiguousAlpha");
+    let a = document.getElementById("ambiguousA");
+    let b = document.getElementById("ambiguousB");
     let h = b*Math.sin(alpha);
     if(alpha<45){
         if (a<h){
@@ -53,4 +62,3 @@ function polynomialEvaluation(Coefficients,Exponents,xValue){
     }
     return result;
 }
-newtonsMethod(142420);
