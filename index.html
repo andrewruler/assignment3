@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale">
+        <link href = "style.css" type="text/css" rel="stylesheet"/>
+        <script src = "math.js"></script>
+    </head>
+    <body>
+        <div class = "heron">
+            <h1>Heron's Formula</h1>
+            <p>Side a</p>
+            <input type="text" name = "a">
+            <p>Side b</p>
+            <input type="text" name = "b">
+            <p>Side c</p>
+            <input type="text" name = "c">
+            <p>Area (result)</p>
+            <input type="text" name = "result" disabled>
+            <button onclick="heronFormula()">Calculate</button>
+        </div>
+        <div class = "ambiguous">
+            <h1>Ambiguous Case</h1>
+            <p>Angle a</p>
+            <input type="text" name = "a">
+            <p>Side a</p>
+            <input type="text" name = "sidea">
+            <p>Side b</p>
+            <input type="text" name = "sideb">
+            <p>Triangle Type (result)</p>
+            <input type="text" name = "result" disabled>
+            <button onclick="ambiguousCase()">Calculate</button>
+        </div>
+        <div class = "newton">
+            <h1>Newtons's Formula</h1>
+            <p>Root Guess</p>
+            <input type="text" name = "g">
+            <p>Root Approximation (result)</p>
+            <input type="text" name = "result" disabled>
+            <button onclick="newtonsMethod()">Calculate</button>
+        </div>
+        <div class = "polynomial">
+            <h1>Polynomial Function</h1>
+            <p>Coefficients</p>
+            <input type="text" name = "Coefficients">
+            <p>Exponents</p>
+            <input type="text" name = "Exponents">
+            <p>x Value</p>
+            <input type="text" name = "x Value">
+            <p>Polynomial Function (result)</p>
+            <input type="text" name = "function" disabled>
+            <p>Polynomial Evaluation (result)</p>
+            <input type="text" name = "evaluation" disabled>
+            <button onclick="calculateArea()">Calculate</button>
+        </div>
+    </body> 
+</html>
