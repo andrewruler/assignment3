@@ -1,64 +1,100 @@
+function heronFormula() {
+    let a = parseFloat(document.getElementById("heronA").value);
+    let b = parseFloat(document.getElementById("heronB").value);
+    let c = parseFloat(document.getElementById("heronC").value);
 
-function heronFormula(){
-    let a = document.getElementById("heronA").value;
-    let b = document.getElementById("heronB").value;
-    let c = document.getElementById("heronC").value;
-    let area = (1/4)*(Math.sqrt((4*a**2*b**2)-(a**2+b**2+c**2)**2));
-    console.log(area);
-    console.log(a);
+    let s = (a + b + c) / 2;
+    let area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+
     document.getElementById("heronResult").value = area;
 }
 
-function ambiguousCase(){
-    let result = document.getElementById("result");
-    let alpha = document.getElementById("ambiguousAlpha");
-    let a = document.getElementById("ambiguousA");
-    let b = document.getElementById("ambiguousB");
-    let h = b*Math.sin(alpha);
-    if(alpha<45){
-        if (a<h){
-            result.innerHTML = "no triangle"
+function ambiguousCase() {
+    let alpha = parseFloat(document.getElementById("ambiguousAlpha").value) * (Math.PI / 180); // Convert to radians
+    let a = parseFloat(document.getElementById("ambiguousA").value);
+    let b = parseFloat(document.getElementById("ambiguousB").value);
+    let h = b * Math.sin(alpha);
+
+    let result = "";
+    if (alpha < Math.PI / 4) { // equivalent to 45 degrees
+        if (a < h) {
+            result = "no triangle";
+        } else if (a === h) {
+            result = "right triangle";
+        } else if (h < a && a < b) {
+            result = "two triangles";
         }
-        else if (a==h){
-            result.innerHTML = "right triangle"
-        }   
-        else if (h<a && a<b){
-            result.innerHTML = "two triangles"
-        }
-    } else if(alpha>45){
-        if(a<b || a==h) {
-            result.innerHTML = "no triangle"
-        }
-        else if(a>b){ 
-            result.innerHTML = "one triangle"
+    } else if (alpha > Math.PI / 4) {
+        if (a < b || a === h) {
+            result = "no triangle";
+        } else if (a > b) {
+            result = "one triangle";
         }
     }
-    return result.innerHTML;
+
+    document.getElementById("ambiguousResult").value = result;
+    return result;
 }
-function newtonsMethod(g){
-    x0=g;
+
+function newtonsMethod() {
+    let x0 = parseFloat(document.getElementById("newtonGuess").value);
     let iterations = 0;
-    while(iterations<10){
-        let fx = 6*x0**4-13*x0**3-18*x0**2+7*x0+6;
-        let fx_derivative = 24*x0**3-39*x0**2-36*x0+7;
-        x0 = x0-fx/fx_derivative;
+
+    while (iterations < 10) {
+        let fx = 6 * x0 ** 4 - 13 * x0 ** 3 - 18 * x0 ** 2 + 7 * x0 + 6;
+        let fx_derivative = 24 * x0 ** 3 - 39 * x0 ** 2 - 36 * x0 + 7;
+
+        x0 = x0 - fx / fx_derivative;
         iterations++;
-        console.log(x0);
-    }  
+    }
+    document.getElementById("newtonResult").value = x0;
     return x0;
 }
-function polynomialEquation(Coefficients,Exponents,xValue){
+
+function polynomialEquation() {
     let equation = "";
-    for(let i = 0; i < Coefficients.length; i++){
-        equation+=coefficients[i];
-        equation+=Exponents[i];
+    let coefficients = document.getElementById("polyCoefficients").value.trim().split(' ');
+    let exponents = document.getElementById("polyExponents").value.trim().split(' ');
+
+    for (let i = 0; i < coefficients.length; i++) {
+        equation += coefficients[i];
+        if (i != coefficients.length - 1) {
+            equation += "x^";
+        }
+        equation += exponents[i];
+        if (i < coefficients.length - 1) {
+            if (coefficients[i + 1] < 0) {
+                equation += " ";
+            } else {
+                equation += " + ";
+            }
+            equation += "";
+        }
     }
+    document.getElementById("polyFunction").value = equation;
     return equation;
 }
-function polynomialEvaluation(Coefficients,Exponents,xValue){
+
+function polynomialEvaluation(Coefficients, Exponents, xValue) {
     let result = 0;
-    for(let i = 0; i < Coefficients.length; i++){
-        result+=Coefficients[i]*Math.pow(xValue,Exponents[i]);
+    let coefficients = document.getElementById("polyCoefficients").value.trim().split(' ');
+    let exponents = document.getElementById("polyExponents").value.trim().split(' ');
+    let x = parseFloat(document.getElementById("polyXValue").value);
+
+    for (let i = 0; i < coefficients.length; i++) {
+        result += coefficients[i] * x ** exponents[i];
     }
-    return result;
+    document.getElementById("polyEvaluation").value = result;
+    return equation;
+}
+
+function calculatePolynomial() {
+    let coefficients = document.getElementById("polyCoefficients").value.split(',').map(Number);
+    let exponents = document.getElementById("polyExponents").value.split(',').map(Number);
+    let xValue = parseFloat(document.getElementById("polyXValue").value);
+    let equation = polynomialEquation(coefficients, exponents);
+    let evaluation = polynomialEvaluation(coefficients, exponents, xValue);
+
+    document.getElementById("polyFunction").value = equation;
+    document.getElementById("polyEvaluation").value = evaluation;
 }

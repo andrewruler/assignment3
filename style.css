@@ -1,62 +1,59 @@
-
-/* General styling for body */
+/* Add this CSS to your style.css file */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
     padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Style for each section block */
-.heron, .ambiguous, .newton, .polynomial {
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 10px 0;
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.container > div {
+    border: 1px solid #ddd;
     border-radius: 8px;
+    padding: 20px;
+    background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Heading styles */
-h1 {
-    font-size: 1.5em;
+.container h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
     color: #333;
-    margin-bottom: 15px;
 }
 
-/* Paragraph styling for labels */
-p {
-    font-weight: bold;
+.container p {
+    margin: 5px 0;
     color: #555;
-    margin: 8px 0 5px;
 }
 
-/* Input field styling */
-input[type="text"] {
-    width: calc(100% - 20px);
+.container input[type="text"] {
+    width: 100%;
     padding: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1em;
 }
 
-/* Disabled input styling */
-input[type="text"][disabled] {
-    background-color: #e9ecef;
-    color: #6c757d;
-}
-
-/* Button styling */
-button {
-    background-color: #4CAF50;
-    color: white;
+.container button {
     padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 1em;
 }
 
-button:hover {
-    background-color: #45a049;
+.container button:hover {
+    background-color: #0056b3;
 }
